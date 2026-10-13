@@ -1,0 +1,220 @@
+:root {
+  --green: #2f6b45;
+  --green-dark: #214d32;
+  --green-light: #eaf4ed;
+  --white: #ffffff;
+  --text: #243027;
+  --muted: #66736a;
+  --border: #d9e3dc;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+}
+a { color: var(--green-dark); }
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+header {
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.navbar {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  display: inline-block;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+}
+.brand .logo-image {
+  height: 50px;      /* Set the height you want for your header */
+  width: auto;       /* Keeps the logo from distorting */
+  display: block;    /* Removes extra whitespace under the image */
+}
+.logo-placeholder {
+  width: 48px;
+  height: 48px;
+  border: 2px dashed var(--green);
+  display: grid;
+  place-items: center;
+  color: var(--green);
+  font-size: 11px;
+  text-align: center;
+  border-radius: 50%;
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+}
+.nav a:hover { color: var(--green); }
+
+.hero {
+  background: var(--green-light);
+  padding: 72px 0;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.eyebrow {
+  color: var(--green-dark);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .82rem;
+  font-weight: 700;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 { font-size: clamp(2.3rem, 6vw, 4.5rem); margin: 12px 0 20px; }
+h2 { font-size: 2rem; margin-top: 0; }
+h3 { margin-bottom: 8px; }
+.lead { font-size: 1.2rem; color: #46554b; }
+.button {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 8px 8px 0 0;
+}
+.button.secondary {
+  background: var(--white);
+  color: var(--green-dark);
+  border: 1px solid var(--green);
+}
+.photo-placeholder1 {
+  width: 100%;
+  height: 450px;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--white);
+}
+
+.photo-placeholder1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+section { padding: 64px 0; }
+.section-alt { background: #f7faf8; }
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.card {
+  border: 1px solid var(--border);
+  padding: 24px;
+  background: var(--white);
+  border-radius: 6px;
+}
+.placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+.issue-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.endorsement {
+  border-left: 4px solid var(--green);
+  padding: 8px 0 8px 20px;
+  margin: 22px 0;
+}
+form {
+  display: grid;
+  gap: 14px;
+  max-width: 700px;
+}
+label { font-weight: 700; }
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bcc9c0;
+  border-radius: 4px;
+  font: inherit;
+}
+textarea { min-height: 150px; }
+footer {
+  background: var(--green-dark);
+  color: var(--white);
+  padding: 32px 0;
+}
+footer a { color: var(--white); }
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.small { font-size: .9rem; color: var(--muted); }
+footer .small { color: #dce9df; }
+
+@media (max-width: 760px) {
+  .navbar, .hero-grid { display: block; }
+  .nav { margin-top: 18px; gap: 12px; }
+  .hero { padding: 48px 0; }
+  .photo-placeholder1 { margin-top: 30px; min-height: 240px; }
+  .grid-3, .issue-list { grid-template-columns: 1fr; }
+  section { padding: 48px 0; }
+}
+
+.hero-grid {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.photo-placeholder {
+  flex: 1;
+}
+
+.photo-placeholder img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Stack the columns on narrow screens */
+@media (max-width: 700px) {
+  .hero-grid {
+    flex-direction: column;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+  }
+}
