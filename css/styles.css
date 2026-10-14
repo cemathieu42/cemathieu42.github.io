@@ -1,4 +1,4 @@
-/* =================================================================ro
+/* =================================================================
    1. VARIABLES & DESIGN TOKENS
    ================================================================ */
 :root {
@@ -11,6 +11,7 @@
   --border: #d9e3dc;
   --surface: #f7faf8;
   --content-width: 1100px;
+  --page-gutter: clamp(1rem, 4vw, 2.5rem);
 }
 
 /* =================================================================
@@ -18,377 +19,500 @@
    ================================================================ */
 *,
 *::before,
-*::after { 
-  box-sizing: border-box; 
+*::after {
+  box-sizing: border-box;
 }
 
-html { 
-  scroll-behavior: smooth; 
-  scroll-padding-top: 100px; 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  -webkit-text-size-adjust: 100%;
 }
 
-body { 
-  margin: 0; 
-  font-family: Arial, Helvetica, sans-serif; 
-  color: var(--text); 
-  background: var(--white); 
-  line-height: 1.65; 
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1rem, 0.25vw + 0.94rem, 1.075rem);
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.65;
+  overflow-wrap: break-word;
 }
 
-img { 
-  max-width: 100%; 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-a { 
-  color: var(--green-dark); 
+a {
+  color: var(--green-dark);
+  text-underline-offset: 0.15em;
 }
 
-/* Common wrapper class used to center and constrain content width across sections */
-.container { 
-  width: min(var(--content-width), 92%); 
-  margin: 0 auto; 
+.container {
+  width: min(var(--content-width), calc(100% - 2 * var(--page-gutter)));
+  margin-inline: auto;
 }
 
 /* =================================================================
    3. HEADER & NAVIGATION
    ================================================================ */
-.site-header { 
-  position: sticky; 
-  top: 0; 
-  z-index: 100; 
-  background: rgba(255, 255, 255, 0.97); 
-  border-bottom: 1px solid var(--border); 
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
 }
 
-.navbar { 
-  min-height: 76px; 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  gap: 24px; 
+.navbar {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding-block: 0.65rem;
 }
 
-.brand { 
-  display: inline-flex; 
-  align-items: center; 
-  text-decoration: none; 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 auto;
+  min-width: 0;
+  text-decoration: none;
 }
 
-.logo-image { 
-  display: block; 
-  height: 50px; 
-  width: auto; 
+.logo-image {
+  width: auto;
+  height: clamp(2.5rem, 4vw, 3.5rem);
+  max-width: min(100%, 28rem);
+  object-fit: contain;
 }
 
-.nav { 
-  display: flex; 
-  align-items: center; 
-  flex-wrap: wrap; 
-  gap: 18px; 
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.4rem clamp(0.75rem, 1.8vw, 1.35rem);
 }
 
-.nav a { 
-  color: var(--text); 
-  text-decoration: none; 
-  font-weight: 700; 
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: clamp(0.9rem, 0.2vw + 0.86rem, 1rem);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.nav a:hover, 
-.nav a:focus-visible { 
-  color: var(--green); 
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--green);
 }
 
 /* =================================================================
    4. SECTIONS & GENERAL LAYOUTS
    ================================================================ */
-section { 
-  padding: 68px 0; 
-  scroll-margin-top: 76px; 
+section {
+  padding-block: clamp(3rem, 6vw, 4.75rem);
+  scroll-margin-top: 96px;
 }
 
-.section-alt { 
-  background: var(--surface); 
+.section-alt {
+  background: var(--surface);
 }
 
-/* Hero Section */
-.hero { 
-  background: var(--green-light); 
-  padding: 72px 0; 
+.hero {
+  background: var(--green-light);
+  padding-block: clamp(3rem, 6vw, 5rem);
 }
 
-.hero-grid { 
-  display: grid; 
-  grid-template-columns: minmax(0, 1.00fr) minmax(0, 1.00fr); 
-  align-items: center; 
-  gap: 1px; 
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.25rem);
 }
 
-.content-grid { 
-  display: grid; 
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); 
-  align-items: center; 
-  gap: 40px; 
+.hero-copy {
+  min-width: 0;
+  max-width: 38rem;
 }
 
-/* Typography elements */
-.eyebrow { 
-  color: var(--green-dark); 
-  text-transform: uppercase; 
-  letter-spacing: 0.08em; 
-  font-size: 0.82rem; 
-  font-weight: 700; 
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(1.75rem, 4vw, 3rem);
 }
 
-h1, h2, h3 { 
-  line-height: 1.2; 
+.content-grid > *,
+.hero-grid > * {
+  min-width: 0;
 }
 
-h1 { 
-  font-size: clamp(2.5rem, 6vw, 4.5rem); 
-  margin: 12px 0 20px; 
-  text-transform: uppercase; 
+/* Typography */
+.eyebrow {
+  color: var(--green-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(0.75rem, 0.15vw + 0.72rem, 0.85rem);
+  font-weight: 700;
 }
 
-h2 { 
-  font-size: clamp(1.8rem, 3.5vw, 2.25rem); 
-  margin: 8px 0 20px; 
+h1, h2, h3 {
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
-h3 { 
-  margin: 0 0 8px; 
+h1 {
+  font-size: clamp(2.25rem, 4.5vw, 4.25rem);
+  margin: 0.75rem 0 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
 }
 
-p { 
-  margin: 0 0 1rem; 
+h2 {
+  font-size: clamp(1.75rem, 2.7vw, 2.35rem);
+  margin: 0.5rem 0 1.25rem;
+  letter-spacing: -0.015em;
 }
 
-.lead { 
-  font-size: 1.2rem; 
-  color: #46554b; 
+h3 {
+  font-size: clamp(1.1rem, 1vw + 0.85rem, 1.3rem);
+  margin: 0 0 0.5rem;
 }
 
-.subheading { 
-  margin: 32px 0 16px; 
+p {
+  margin: 0 0 1rem;
 }
 
-.placeholder { 
-  color: var(--muted); 
-  font-style: italic; 
+.lead {
+  font-size: clamp(1.05rem, 0.6vw + 0.92rem, 1.25rem);
+  color: #46554b;
+  max-width: 68ch;
+}
+
+.subheading {
+  margin: 2rem 0 1rem;
+}
+
+.placeholder {
+  color: var(--muted);
+  font-style: italic;
 }
 
 /* Buttons */
-.button { 
-  display: inline-block; 
-  background: var(--green); 
-  color: var(--white); 
-  padding: 12px 20px; 
-  border-radius: 5px; 
-  text-decoration: none; 
-  font-weight: 700; 
-  margin: 8px 8px 0 0; 
+.button {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  padding: 0.7rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 0.5rem 0.5rem 0 0;
+  line-height: 1.35;
+  transition: background-color 160ms ease, color 160ms ease;
 }
 
-.button:hover, 
-.button:focus-visible { 
-  background: var(--green-dark); 
+.button:hover,
+.button:focus-visible {
+  background: var(--green-dark);
 }
 
-.button.secondary { 
-  background: var(--white); 
-  color: var(--green-dark); 
-  border: 1px solid var(--green); 
+.button.secondary {
+  background: var(--white);
+  color: var(--green-dark);
+  border-color: var(--green);
 }
 
-/* Images & Photos */
-.hero-photo img { 
-  display: block; 
-  width: 100%; 
-  max-height: 490px; 
-  object-fit: cover; 
-  object-position: center; 
-  border-radius: 10px; 
+.button.secondary:hover,
+.button.secondary:focus-visible {
+  background: var(--green-light);
 }
 
-.content-photo { 
-  display: block; 
-  width: 100%; 
-  max-height: 490px; 
-  object-fit: cover; 
-  object-position: center; 
-  border-radius: 40px; 
+/* Images: preserve each source photo's natural proportions.
+   The previous fixed hero aspect ratio was cropping the campaign sign. */
+.hero-photo {
+  min-width: 0;
 }
 
-.hero-photo img { 
-  aspect-ratio: 4 / 5; 
+.hero-photo img {
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 10px;
+}
+
+.content-photo {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 12px;
 }
 
 /* =================================================================
    5. CARDS & GRID COMPONENTS
    ================================================================ */
-.grid-3 { 
-  display: grid; 
-  grid-template-columns: repeat(3, minmax(0, 1fr)); 
-  gap: 22px; 
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.4rem);
 }
 
-.card { 
-  border: 1px solid var(--border); 
-  padding: 24px; 
-  background: var(--white); 
-  border-radius: 8px; 
+.card {
+  min-width: 0;
+  border: 1px solid var(--border);
+  padding: clamp(1.1rem, 2.2vw, 1.5rem);
+  background: var(--white);
+  border-radius: 8px;
 }
 
-.card p:last-child { 
-  margin-bottom: 0; 
+.card p:last-child {
+  margin-bottom: 0;
 }
 
-/* Issue list layout (used in the issues section) */
-.issue-list { 
-  display: grid; 
-  grid-template-columns: repeat(2, minmax(0, 1fr)); 
-  gap: 20px; 
+.issue-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.4rem);
 }
 
-.issue-list .card:last-child { 
-  grid-column: 1 / -1; 
+.issue-list .card:last-child {
+  grid-column: 1 / -1;
 }
 
 /* Endorsement blocks */
-.endorsement { 
-  display: grid; 
-  grid-template-columns: 150px minmax(0, 1fr); 
-  align-items: center; 
-  gap: 24px; 
-  border-left: 4px solid var(--green); 
-  padding: 8px 0 8px 20px; 
-  margin: 22px 0; 
+.endorsement {
+  display: grid;
+  grid-template-columns: minmax(100px, 150px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  border-left: 4px solid var(--green);
+  padding: 0.75rem 0 0.75rem clamp(0.85rem, 2vw, 1.25rem);
+  margin: 1.35rem 0;
 }
 
-.endorsement-logo-placeholder { 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  min-height: 100px; 
-  padding: 12px; 
-  border: 1px dashed #aab8ae; 
-  border-radius: 6px; 
-  background: var(--surface); 
-  color: var(--muted); 
-  text-align: center; 
-  font-size: 0.85rem; 
+.endorsement-logo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  padding: 12px;
+  border: 1px dashed #aab8ae;
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.85rem;
 }
 
-.endorsement-logo { 
-  display: block; 
-  width: 100%; 
-  max-width: 150px; 
-  max-height: 110px; 
-  object-fit: contain; 
-  margin: 0 auto; 
+.endorsement-logo {
+  width: 100%;
+  max-width: 150px;
+  max-height: 110px;
+  object-fit: contain;
+  object-position: center;
+  margin-inline: auto;
 }
 
-.endorsement-copy p:last-child { 
-  margin-bottom: 0; 
+.endorsement-copy {
+  min-width: 0;
 }
 
-.contact-grid { 
-  align-items: start; 
+.endorsement-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-grid {
+  align-items: start;
 }
 
 /* =================================================================
    6. FOOTER
    ================================================================ */
-footer { 
-  background: var(--green-dark); 
-  color: var(--white); 
-  padding: 28px 0; 
+footer {
+  background: var(--green-dark);
+  color: var(--white);
+  padding-block: 1.75rem;
 }
 
-footer .container { 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  flex-wrap: wrap; 
-  gap: 16px; 
+footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.small { 
-  font-size: 0.9rem; 
-  color: #dce9df; 
+.small {
+  font-size: clamp(0.8rem, 0.15vw + 0.77rem, 0.9rem);
+  color: #dce9df;
 }
 
-.back-top { 
-  color: var(--white); 
-  text-decoration: none; 
-  font-weight: 700; 
+.back-top {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 /* =================================================================
-   7. MEDIA QUERIES & RESPONSIVENESS
+   7. RESPONSIVE LAYOUTS
    ================================================================ */
-@media (max-width: 760px) {
-  .navbar { 
-    min-height: auto; 
-    padding: 12px 0; 
-    display: block; 
+@media (min-width: 1400px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
   }
-  
-  .logo-image { 
-    height: 42px; 
-    max-width: 100%; 
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.65rem;
+    padding-block: 0.75rem;
   }
-  
-  .nav { 
-    margin-top: 12px; 
-    gap: 10px 16px; 
+
+  .nav {
+    justify-content: flex-start;
   }
-  
-  .nav a { 
-    font-size: 0.95rem; 
+
+  .hero-grid,
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    gap: 1.75rem;
   }
-  
-  section { 
-    padding: 48px 0; 
-    scroll-margin-top: 110px; 
+
+  .hero-grid {
+    align-items: center;
   }
-  
-  .hero { 
-    padding: 48px 0; 
+
+  .endorsement {
+    grid-template-columns: 120px minmax(0, 1fr);
   }
-  
-  .hero-grid, 
-  .content-grid { 
-    grid-template-columns: 1fr; 
-    gap: 26px; 
+}
+
+@media (max-width: 680px) {
+  html {
+    scroll-padding-top: 130px;
   }
-  
-  .hero-photo { 
-    max-width: 520px; 
+
+  .navbar {
+    gap: 0.6rem;
   }
-  
-  .grid-3, 
-  .issue-list { 
-    grid-template-columns: 1fr; 
+
+  .logo-image {
+    height: 2.6rem;
+    max-width: 100%;
   }
-  
-  .endorsement { 
-    grid-template-columns: 100px minmax(0, 1fr); 
-    gap: 16px; 
-    padding-left: 14px; 
+
+  .nav {
+    gap: 0.35rem 1rem;
   }
-  
-  .endorsement-logo-placeholder { 
-    min-height: 82px; 
-    font-size: 0.78rem; 
+
+  .nav a {
+    font-size: 0.9rem;
   }
-  
-  .issue-list .card:last-child { 
-    grid-column: auto; 
+
+  section {
+    scroll-margin-top: 130px;
+  }
+
+  .hero-grid,
+  .content-grid,
+  .grid-3,
+  .issue-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-grid,
+  .content-grid {
+    gap: 1.5rem;
+  }
+
+  .hero-copy {
+    max-width: none;
+  }
+
+  .hero-photo {
+    width: 100%;
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+
+  .hero-photo img {
+    max-height: 480px;
+  }
+
+  .content-photo {
+    max-height: 520px;
+  }
+
+  .endorsement {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 0.9rem;
+    padding-left: 0.75rem;
+    align-items: start;
+  }
+
+  .endorsement-logo {
+    max-width: 88px;
+    max-height: 82px;
+  }
+
+  .endorsement-logo-placeholder {
+    min-height: 72px;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .issue-list .card:last-child {
+    grid-column: auto;
+  }
+
+  footer .container {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav {
+    column-gap: 0.7rem;
+  }
+
+  .nav a {
+    font-size: 0.84rem;
+  }
+
+  .endorsement {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .endorsement-logo {
+    max-width: 72px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { 
-    scroll-behavior: auto; 
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 }
